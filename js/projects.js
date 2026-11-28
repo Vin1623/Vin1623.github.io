@@ -15,7 +15,7 @@ window.PROJECTS = [
     id: "bldc-esc",
     title: "Brushless DC Motor Electronic Speed Controller",
     short: "4-layer 3-phase BLDC ESC — RP2040 + DRV8305, six 60 V MOSFETs, per-phase shunt sensing.",
-    role: "Sole designer (personal project)",
+    role: "Sole designer (ESE323 course project)",
     tools: ["Altium Designer"],
     date: "Fall 2026",
     status: "Boards ordered from JLCPCB · bring-up pending",
