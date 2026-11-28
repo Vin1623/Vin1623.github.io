@@ -1,33 +1,9 @@
-# Vincent Tan — Hardware Portfolio
+# Vincent Tan
 
-Static site (plain HTML/CSS/JS, no build step) hosted free on GitHub Pages at
-**https://vin1623.github.io**.
+Hardware and PCB design portfolio, Electrical Engineering @ Stony Brook University.
 
-## Editing content
-- **Projects:** `js/projects.js` (text, role, highlights, and which media files exist)
-- **About / contact / skills / resume link:** `js/site.js`
-- **Media:** `assets/<project-id>/`
+**Live site:** https://vin1623.github.io
 
-After any edit: commit + push → the live site updates in ~1 minute.
+**Featured projects:** BLDC Motor ESC · URC Rover Electrical System · IEEE Micromouse PCB · MATE ROV Float PCB · Ultra-Compact Magnetic Encoder · 12 V-to-5 V Buck Converter
 
-## Adding a schematic (Altium)
-1. Open the schematic → **File → Smart PDF** → current document/project → *Color* output.
-2. Save as `assets/<project-id>/schematic.pdf` (or export a PNG/SVG for best mobile display).
-3. In `js/projects.js` set `schematic: "schematic.pdf"`.
-
-## Adding the 3D board view (Altium → GLB)
-1. In the PCB: **File → Export → STEP 3D** → save `board.step`.
-2. Convert STEP → GLB (free, pick one):
-   - **CAD Assistant** (Open Cascade, free): open `board.step` → *Save as* → glTF binary (`.glb`).
-   - **FreeCAD**: File → Import `board.step` → select all → File → Export → `*.glb`.
-3. Keep it under ~20 MB (GitHub limit is 100 MB per file; smaller loads faster).
-   If it's huge, hide 3D bodies of tiny passives before exporting, or simplify the mesh.
-4. Save as `assets/<project-id>/board.glb` and set `model: "board.glb"`.
-
-## Cover images & photos
-- `cover: "cover.png"` — a 16:9 screenshot of the 3D view or layout for the home-page card.
-- `photos: ["front.jpg", "rework.jpg"]` — real board photos (bring-up/rework shots are great).
-
-## Before publishing team boards
-Confirm with the team lead that sharing URC / MATE / Micromouse design files is OK,
-and only show the portions you designed.
+Built with plain HTML/CSS/JS, 3D boards rendered with model-viewer, hosted on GitHub Pages.
