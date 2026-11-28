@@ -65,16 +65,23 @@
     if (!p) { $("project").innerHTML = `<section><h1>Project not found</h1><p><a href="./">Back to home</a></p></section>`; return; }
     document.title = `${p.title} · ${S.name}`;
 
+    // PDF embed (or clickable image) plus an "open full-size" link; used for the schematic and PCB layout.
+    const doc = (file, label) =>
+      (/\.pdf$/i.test(file)
+        ? `<object class="schematic" data="${asset(p, file)}#view=FitH" type="application/pdf">
+             <p>Your browser can't show the PDF inline. <a href="${asset(p, file)}" target="_blank">Open ${label.toLowerCase()}</a>.</p></object>`
+        : `<a href="${asset(p, file)}" target="_blank"><img class="schematic-img" src="${asset(p, file)}" alt="${label}"></a>`)
+      + `<p class="mono small"><a href="${asset(p, file)}" target="_blank">Open full-size ${label.toLowerCase()} ↗</a></p>`;
+
     const sch = p.schematic
-      ? (/\.pdf$/i.test(p.schematic)
-        ? `<object class="schematic" data="${asset(p, p.schematic)}#view=FitH" type="application/pdf">
-             <p>Your browser can't show the PDF inline. <a href="${asset(p, p.schematic)}" target="_blank">Open schematic</a>.</p></object>`
-        : `<a href="${asset(p, p.schematic)}" target="_blank"><img class="schematic-img" src="${asset(p, p.schematic)}" alt="Schematic"></a>`)
-        + `<p class="mono small"><a href="${asset(p, p.schematic)}" target="_blank">Open full-size schematic ↗</a></p>`
+      ? doc(p.schematic, "Schematic")
       : `<div class="placeholder">${boardSVG("schematic coming soon")}</div>`;
+
+    const layout = p.layout ? doc(p.layout, "PCB layout") : "";
 
     const model = p.model
       ? `<model-viewer src="${asset(p, p.model)}" alt="3D model of ${esc(p.title)}" camera-controls auto-rotate
+           ${p.modelOrientation ? `orientation="${esc(p.modelOrientation)}"` : ""}
            shadow-intensity="0.6" exposure="1.1" environment-image="neutral" interaction-prompt="auto"></model-viewer>
          <p class="mono small muted">Drag to rotate · scroll/pinch to zoom</p>`
       : `<div class="placeholder">${boardSVG("3D board view coming soon")}</div>`;
@@ -102,6 +109,7 @@
         <div><h2>3D Board</h2>${model}</div>
         <div><h2>Schematic</h2>${sch}</div>
       </section>
+      ${layout ? `<section><h2>PCB Layout</h2>${layout}</section>` : ""}
       ${photos ? `<section><h2>Hardware</h2>${photos}</section>` : ""}
       <section>
         <h2>Technical Highlights</h2>

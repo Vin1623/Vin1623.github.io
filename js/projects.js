@@ -5,6 +5,7 @@
 //    cover:     image shown on the home-page card   (e.g. "cover.png")
 //    schematic: PDF, SVG or PNG exported from Altium (e.g. "schematic.pdf")
 //    model:     3D board as .glb                     (e.g. "board.glb")
+//    layout:    optional PCB layout PDF/SVG/PNG      (e.g. "pcb.pdf"); omit to hide the section
 //    photos:    list of real-board photos            (e.g. ["front.jpg"])
 //  Leave a field as null / [] until the file exists — the page shows a
 //  placeholder instead of a broken link.
@@ -29,9 +30,11 @@ window.PROJECTS = [
       ["USB-C & Signal Integrity", "USB-C programming and debug with ESD protection; USB D+/D− routed to a 90 Ω differential-impedance target on a JLCPCB 4-layer controlled-impedance stackup."],
       ["DFM & Verification", "Solid ground referencing, power polygons, via arrays, and controlled clearances, with ERC/DRC and footprint checks completed before fabrication."],
     ],
-    cover: null,
+    cover: "bldc_esc_cover.png",
     schematic: "BLDC_ESC_Vincent_Tan_Schematic.pdf",
-    model: null,
+    model: "board.glb",
+    layout: "BLDC_ESC_PCB.pdf",
+    modelOrientation: "0deg -90deg 0deg", // STEP is Z-up; pitch -90° lays the board flat (glTF is Y-up)
     photos: [],
   },
   {
