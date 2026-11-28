@@ -30,7 +30,7 @@ window.PROJECTS = [
       ["DFM & Verification", "Solid ground referencing, power polygons, via arrays, and controlled clearances, with ERC/DRC and footprint checks completed before fabrication."],
     ],
     cover: null,
-    schematic: null,
+    schematic: "BLDC_ESC_Vincent_Tan_Schematic.pdf",
     model: null,
     photos: [],
   },
